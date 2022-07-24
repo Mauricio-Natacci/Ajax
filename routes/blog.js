@@ -1,3 +1,4 @@
+const { response } = require('express')
 const express = require('express')
 const mongodb = require('mongodb')
 
@@ -130,7 +131,7 @@ router.post('/posts/:id/comments', async function (req, res) {
     text: req.body.text
   }
   await db.getDb().collection('comments').insertOne(newComment)
-  res.redirect('/posts/' + req.params.id)
+  res.json({ message: 'Comment added!' })
 })
 
 module.exports = router
